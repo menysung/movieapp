@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "SF_HambakSnow";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "SF_HambakSnow";
+}
+
+body {
+  background-color: #101010;
+  color: #fff;
+}
+
+.align_center {
+  display: flex;
+  align-items: center;
+}
