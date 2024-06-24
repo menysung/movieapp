@@ -1,7 +1,21 @@
+import { useEffect, useState } from "react";
 import Fire from "../../assets/fire.png";
+import MovieCard from "./MovieCard";
 import "./MovieList.css";
 
 export default function MovieList() {
+  const [movies, setMovies] = useState([]);
+  const fetchMovies = async () => {
+    const response = await fetch(
+      "https://api.themoviedb.org/3/movie/popular?api_key=7d2ef290feb724a005d52f4bb3088662&language=ko"
+    );
+    const data = await response.json();
+    setMovies(data.results);
+  };
+  //시작시 한 번 영화를 불러온다
+  useEffect(() => {
+    fetchMovies();
+  }, []);
   return (
     <section className="movie_list">
       <header className="align_center movie_list_header">
@@ -28,7 +42,11 @@ export default function MovieList() {
         </div>
       </header>
 
-      <div className="movie_cards"></div>
+      <div className="movie_cards">
+        {movies.map((m) => (
+          <MovieCard key={m.id} movie={m} />
+        ))}
+      </div>
     </section>
   );
 }

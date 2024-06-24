@@ -1,16 +1,15 @@
 @font-face {
-  font-family: "SF_HambakSnow";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff")
+  font-family: "GangwonEdu_OTFBoldA";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff")
     format("woff");
   font-weight: normal;
   font-style: normal;
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "SF_HambakSnow";
+  font-family: "GangwonEdu_OTFBoldA";
 }
 
 body {
