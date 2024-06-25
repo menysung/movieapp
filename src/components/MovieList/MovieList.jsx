@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { useEffect, useState } from "react";
 import Fire from "../../assets/fire.png";
 import MovieCard from "./MovieCard";
@@ -7,6 +8,10 @@ export default function MovieList() {
   const [movies, setMovies] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]); //필터링 한 영화 데이터
   const [minRating, setMinRating] = useState(0); //평점
+  const [sort, setSort] = useState({
+    by: "default",
+    order: "asc",
+  });
   const fetchMovies = async () => {
     const response = await fetch(
       "https://api.themoviedb.org/3/movie/popular?api_key=7d2ef290feb724a005d52f4bb3088662&language=ko"
@@ -23,15 +28,29 @@ export default function MovieList() {
       setFilterMovies(movies); //처음으로 되돌림
     } else {
       setMinRating(rate); //평점 업데이트
+      //필터함수로 영화평점이 지정한 평점보다 높은 경우에만 남김
       const filtered = movies.filter((movie) => movie.vote_average >= rate);
       setFilterMovies(filtered);
     }
   };
+  const handelSort = (e) => {
+    const { name, value } = e.target; //옵션값이 바뀌면 이벤트객체로 이름과 값을 가져온다
+    setSort((prev) => ({ ...prev, [name]: value }));
+  };
+  console.log(sort);
 
   //시작시 한 번 영화를 불러온다
   useEffect(() => {
     fetchMovies();
   }, []);
+  //sort 값이 업데이트 될 때마다 정렬
+  useEffect(() => {
+    if (sort.by !== "default") {
+      const sortedMovies = _.orderBy(filterMovies, [sort.by], [sort.order]);
+      setFilterMovies(sortedMovies);
+    }
+  }, [sort]);
+
   return (
     <section className="movie_list">
       <header className="align_center movie_list_header">
@@ -74,14 +93,24 @@ export default function MovieList() {
             </li>
           </ul>
 
-          <select name="" id="" className="movie_sorting">
-            <option value="">SortBy</option>
-            <option value="">Date</option>
-            <option value="">Rating</option>
+          <select
+            name="by"
+            id="by"
+            onChange={handelSort}
+            className="movie_sorting"
+          >
+            <option value="default">SortBy</option>
+            <option value="release_date">Date</option>
+            <option value="vote_average">Rating</option>
           </select>
-          <select name="" id="" className="movie_sorting">
-            <option value="">Ascending</option>
-            <option value="">Descending</option>
+          <select
+            name="order"
+            id="order"
+            onChange={handelSort}
+            className="movie_sorting"
+          >
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
           </select>
         </div>
       </header>
