@@ -5,16 +5,37 @@
   font-weight: normal;
   font-style: normal;
 }
+
+/* :root 자주쓰는 색을 변수로 지정함 */
+:root {
+  --body_backgroud: #101010;
+  --body_color: #fff;
+  --heading_color: #ffe400;
+}
+
+/* 라이트 테마일떄 색 변경 */
+[data-theme="light"] {
+  --body_backgroud: #fff;
+  --body_color: #000;
+  --heading_color: #000;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "GangwonEdu_OTFBoldA";
+  transition: all 0.3s ease-in-out;
+}
+/* 네브바 클릭시 해당 아이디로 smooth 하게 스크롤 이동 */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #101010;
-  color: #fff;
+  background-color: var(--body_backgroud);
+  color: var(--body_color);
+  font-family: "Pretendard-Regular", sans-serif;
 }
 
 .align_center {
