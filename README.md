@@ -2,6 +2,7 @@
 
 # npm install vite
 # npm run dev
+# https://www.omdbapi.com/ API 이용해서 영화 앱 만들기
 
 라이트모드
 <img width="1477" alt="스크린샷 2024-09-03 오후 5 06 14" src="https://github.com/user-attachments/assets/ab859da0-0b64-4b12-b4e1-43d1635310a1">
