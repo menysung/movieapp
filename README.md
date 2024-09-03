@@ -1,6 +1,5 @@
 # React + Vite
 
-
-npm install vite
-npm run dev
+# npm install vite
+# npm run dev
 
